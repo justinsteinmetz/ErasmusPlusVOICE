@@ -178,6 +178,49 @@
     .pulse{display:none}
   }
 
+  /* ---- Portrait / phones: reflow into a vertical poster ---- */
+  @media (max-aspect-ratio:1/1){
+    html,body{height:auto;overflow-x:hidden;overflow-y:auto}
+    .stage{
+      position:static;
+      width:100vw;
+      height:auto;
+      min-height:100dvh;
+      margin:0;
+      container-type:inline-size;
+      display:flex;
+      flex-direction:column;
+      padding-bottom:6vw;
+    }
+    .grid{
+      position:static;
+      display:flex;
+      flex-direction:column;
+      grid-template-columns:none;
+    }
+    .left{padding:9vw 7vw 0}
+    .hero-wrap{margin-top:0}
+    .kicker{font-size:3cqw;letter-spacing:0.16em;white-space:normal}
+    .hero{font-size:23cqw;line-height:0.86}
+    .subtitle{font-size:6cqw;margin-top:3.5cqw;max-width:none}
+    .themes{font-size:3cqw;letter-spacing:0.12em;margin-top:4cqw;white-space:normal}
+    .rule{width:26cqw;margin-top:6cqw}
+    .hook{font-size:5.6cqw;margin-top:4.5cqw}
+    .roles{font-size:3.5cqw;margin-top:2cqw}
+    .right{
+      position:relative;
+      width:100%;
+      aspect-ratio:620/700;
+      margin-top:7vw;
+    }
+    .eu{
+      position:static;
+      align-self:flex-start;
+      width:52vw;
+      margin:2vw 0 0 7vw;
+    }
+  }
+
   /* EU co-funding emblem — compliance mark, kept small and quiet */
   .eu{
     position:absolute;
@@ -191,7 +234,7 @@
     fill:var(--bone);
     font-family:var(--body);
     font-weight:500;
-    font-size:19px;
+    font-size:17px;
     letter-spacing:0.005em;
   }
 </style>
@@ -296,8 +339,9 @@
         <polygon points="37.50,34.00 39.97,41.60 47.96,41.60 41.50,46.30 43.97,53.90 37.50,49.20 31.03,53.90 33.50,46.30 27.04,41.60 35.03,41.60" fill="#FFCC00"/>
         <polygon points="41.52,19.00 43.99,26.60 51.98,26.60 45.52,31.30 47.98,38.90 41.52,34.20 35.05,38.90 37.52,31.30 31.06,26.60 39.05,26.60" fill="#FFCC00"/>
         <polygon points="52.50,8.02 54.97,15.62 62.96,15.62 56.50,20.32 58.97,27.92 52.50,23.22 46.03,27.92 48.50,20.32 42.04,15.62 50.03,15.62" fill="#FFCC00"/>
-        <text x="152" y="40" class="eu-t">Co-funded by</text>
-        <text x="152" y="62" class="eu-t">the European Union</text>
+        <text x="152" y="28" class="eu-t">Co-funded by</text>
+        <text x="152" y="50" class="eu-t">the European Union</text>
+        <text x="152" y="72" class="eu-t">Erasmus+ programme</text>
       </svg>
     </div>
     <div class="grain"></div>
