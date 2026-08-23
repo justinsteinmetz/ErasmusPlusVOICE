@@ -1,1 +1,1 @@
-https://justinsteinmetz.github.io/VOICE_ERASMUS_PLUS/
+https://justinsteinmetz.github.io/ErasmusPlusVOICE/
