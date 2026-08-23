@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOICE — Erasmus+ recruitment slide</title>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,500&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0C11;
+    --ink-2:#12151C;
+    --bone:#ECE7DD;
+    --slate:#8A93A3;
+    --slate-dim:#565E6C;
+    --amber:#F5B300;
+    --coral:#FF5A36;
+    --magenta:#E23E6B;
+    --display:"Clash Display","General Sans",system-ui,-apple-system,Arial,sans-serif;
+    --body:"General Sans",system-ui,-apple-system,Arial,sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  html,body{
+    height:100%;
+    background:var(--ink);
+    overflow:hidden;
+    font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* 16:9 stage, centred, scales to any screen (letterboxes on the ink) */
+  .stage{
+    position:absolute;
+    inset:0;
+    margin:auto;
+    width:min(100vw, calc(100vh * 16 / 9));
+    height:min(100vh, calc(100vw * 9 / 16));
+    container-type:size;
+    overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 78% 30%, rgba(255,90,54,0.10) 0%, rgba(226,62,107,0.05) 32%, rgba(10,12,17,0) 60%),
+      radial-gradient(140% 120% at 50% 120%, rgba(245,179,0,0.05) 0%, rgba(10,12,17,0) 55%),
+      radial-gradient(150% 150% at 50% 50%, #12151C 0%, #0A0C11 62%, #06070A 100%);
+  }
+
+  /* faint grain — a nod to the Curves → Vignette → Grain finish */
+  .grain{
+    position:absolute; inset:0; pointer-events:none; z-index:5;
+    opacity:0.055; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .grid{
+    position:absolute; inset:0; z-index:2;
+    display:grid;
+    grid-template-columns:45% 55%;
+  }
+
+  /* ---- Left: title + recruitment ---- */
+  .left{
+    position:relative;
+    padding:5.4cqh 0 6cqh 6cqw;
+    display:flex; flex-direction:column;
+  }
+
+  .kicker{
+    font-family:var(--body);
+    font-weight:600;
+    font-size:0.95cqw;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--slate);
+    white-space:nowrap;
+  }
+  .kicker b{color:var(--coral);font-weight:600}
+
+  .hero-wrap{margin-top:auto}
+
+  .hero{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:17.5cqw;
+    line-height:0.82;
+    letter-spacing:-0.03em;
+    color:var(--bone);
+  }
+
+  .subtitle{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:2.35cqw;
+    line-height:1.1;
+    letter-spacing:-0.005em;
+    color:var(--bone);
+    margin-top:2.1cqh;
+    max-width:30ch;
+  }
+
+  .themes{
+    font-family:var(--body);
+    font-weight:500;
+    font-size:0.92cqw;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin-top:2.6cqh;
+    white-space:nowrap;
+  }
+  .themes .dot{color:var(--slate-dim);margin:0 0.55em}
+
+  .rule{
+    width:8cqw; height:2px; margin-top:3.4cqh;
+    background:linear-gradient(90deg,var(--amber),var(--coral) 55%,var(--magenta));
+    border:0;
+  }
+
+  .hook{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:2.05cqw;
+    line-height:1.12;
+    color:var(--bone);
+    margin-top:2.2cqh;
+  }
+  .roles{
+    font-family:var(--body);
+    font-weight:500;
+    font-size:1.18cqw;
+    letter-spacing:0.03em;
+    color:var(--slate);
+    margin-top:1cqh;
+  }
+  .roles .dot{color:var(--slate-dim);margin:0 0.4em}
+
+  /* ---- Right: the voice network ---- */
+  .right{position:relative}
+  .net{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+  }
+
+  .link{fill:none;stroke-width:1.4;stroke-linecap:round}
+  .link.perim{stroke:var(--slate-dim);stroke-opacity:0.35;stroke-width:1}
+  .link.a{stroke:var(--amber);stroke-opacity:0.55}
+  .link.b{stroke:var(--coral);stroke-opacity:0.6}
+  .link.c{stroke:var(--magenta);stroke-opacity:0.55}
+
+  .node-ring{fill:none;stroke:var(--slate);stroke-opacity:0.5;stroke-width:1.2}
+  .node-dot{fill:var(--bone)}
+  .hub .node-dot{fill:var(--coral)}
+  .hub .halo{fill:var(--coral);opacity:0.16}
+
+  .n-city{font-family:var(--body);font-weight:600;fill:var(--bone);letter-spacing:0.02em}
+  .n-meta{font-family:var(--body);font-weight:400;fill:var(--slate)}
+  .n-num{font-family:var(--body);font-weight:600;fill:var(--slate-dim);letter-spacing:0.12em}
+  .n-home{fill:var(--coral)}
+
+  /* travelling pulses along the waveforms */
+  .pulse{fill:#fff;opacity:0}
+  .pulse.pa{offset-path:path("M330,400 C310,300 360,210 410,120");animation:travel 5.4s linear infinite}
+  .pulse.pb{offset-path:path("M330,400 C250,360 170,330 120,250");animation:travel 5.4s linear infinite;animation-delay:1.8s}
+  .pulse.pc{offset-path:path("M330,400 C300,490 270,560 250,620");animation:travel 5.4s linear infinite;animation-delay:3.6s}
+
+  @keyframes travel{
+    0%{offset-distance:0%;opacity:0}
+    8%{opacity:1}
+    82%{opacity:1}
+    100%{offset-distance:100%;opacity:0}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .pulse{display:none}
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="grid">
+
+      <!-- LEFT -->
+      <section class="left">
+        <div class="kicker">Erasmus+ &nbsp;·&nbsp; Four schools &nbsp;·&nbsp; <b>2026–2028</b></div>
+
+        <div class="hero-wrap">
+          <h1 class="hero">VOICE</h1>
+          <p class="subtitle">Voices of Identity in&nbsp;Contemporary&nbsp;Europe</p>
+
+          <div class="themes">
+            Identity <span class="dot">·</span> Democracy <span class="dot">·</span> Media <span class="dot">·</span> Participation
+          </div>
+
+          <hr class="rule">
+
+          <p class="hook">An invitation to teach across&nbsp;Europe.</p>
+          <p class="roles">
+            Interested? Come and find Klára &amp; Justin
+          </p>
+        </div>
+      </section>
+
+      <!-- RIGHT: voice network -->
+      <div class="right">
+        <svg class="net" viewBox="0 0 620 720" preserveAspectRatio="xMidYMid meet" aria-label="Network of four partner schools connected across Europe">
+
+          <!-- perimeter: partner-to-partner -->
+          <path class="link perim" d="M410,120 C240,150 150,190 120,250"/>
+          <path class="link perim" d="M120,250 C150,430 200,540 250,620"/>
+          <path class="link perim" d="M250,620 C360,520 420,300 410,120"/>
+
+          <!-- spokes from Prague hub (waveform) -->
+          <path class="link a" d="M330,400 C310,300 360,210 410,120"/>
+          <path class="link b" d="M330,400 C250,360 170,330 120,250"/>
+          <path class="link c" d="M330,400 C300,490 270,560 250,620"/>
+
+          <!-- travelling pulses -->
+          <circle class="pulse pa" r="3.4"/>
+          <circle class="pulse pb" r="3.4"/>
+          <circle class="pulse pc" r="3.4"/>
+
+          <!-- Copenhagen (03) -->
+          <g>
+            <circle class="node-ring" cx="410" cy="120" r="8"/>
+            <circle class="node-dot" cx="410" cy="120" r="3.2"/>
+            <text class="n-num" x="426" y="106" font-size="10">03</text>
+            <text class="n-city" x="426" y="122" font-size="17">COPENHAGEN</text>
+            <text class="n-meta" x="426" y="140" font-size="12">Gladsaxe Gymnasium · Oct 2027</text>
+          </g>
+
+          <!-- Arnhem (01) -->
+          <g>
+            <circle class="node-ring" cx="120" cy="250" r="8"/>
+            <circle class="node-dot" cx="120" cy="250" r="3.2"/>
+            <text class="n-num" x="138" y="240" font-size="10">01</text>
+            <text class="n-city" x="138" y="256" font-size="17">ARNHEM</text>
+            <text class="n-meta" x="138" y="274" font-size="12">Lorentz Lyceum · Nov 2026</text>
+          </g>
+
+          <!-- Valdobbiadene (02) -->
+          <g>
+            <circle class="node-ring" cx="250" cy="620" r="8"/>
+            <circle class="node-dot" cx="250" cy="620" r="3.2"/>
+            <text class="n-num" x="250" y="655" font-size="10" text-anchor="middle">02</text>
+            <text class="n-city" x="250" y="673" font-size="17" text-anchor="middle">VALDOBBIADENE</text>
+            <text class="n-meta" x="250" y="691" font-size="12" text-anchor="middle">Isiss G. Verdi · Apr 2027</text>
+          </g>
+
+          <!-- Prague hub (04, home) -->
+          <g class="hub">
+            <circle class="halo" cx="330" cy="400" r="26"/>
+            <circle class="node-ring" cx="330" cy="400" r="12" stroke="#FF5A36" stroke-opacity="0.7"/>
+            <circle class="node-dot" cx="330" cy="400" r="5"/>
+            <text class="n-num" x="356" y="388" font-size="10">04</text>
+            <text class="n-city" x="356" y="405" font-size="19">PRAGUE</text>
+            <text class="n-meta" x="356" y="424" font-size="12">Deutsche Schule Prag · Apr 2028 &nbsp;<tspan class="n-home">home</tspan></text>
+          </g>
+
+        </svg>
+      </div>
+
+    </div>
+    <div class="grain"></div>
+  </div>
+</body>
+</html>
